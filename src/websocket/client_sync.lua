@@ -16,6 +16,7 @@ local new = function(ws)
       self.sock:close()
       return nil,err
     end
+    return _,err
   end
   
   self.sock_send = function(self,...)
@@ -29,6 +30,10 @@ local new = function(ws)
   self.sock_close = function(self)
     --self.sock:shutdown() Causes errors?
     self.sock:close()
+  end
+
+  self.set_timeout = function(self, val)
+    self.sock:settimeout(val)
   end
   
   self = sync.extend(self)

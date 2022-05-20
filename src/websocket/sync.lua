@@ -1,7 +1,7 @@
 local frame = require'websocket.frame'
 local handshake = require'websocket.handshake'
 local tools = require'websocket.tools'
-local ssl = require'ssl'
+--local ssl = require'ssl'
 local tinsert = table.insert
 local tconcat = table.concat
 
@@ -118,6 +118,7 @@ local close = function(self,code,reason)
 end
 
 local connect = function(self,ws_url,ws_protocol,ssl_params)
+  print('called connect')
   if self.state ~= 'CLOSED' then
     return nil,'wrong state',nil
   end
@@ -128,8 +129,8 @@ local connect = function(self,ws_url,ws_protocol,ssl_params)
     return nil,err,nil
   end
   if protocol == 'wss' then
-    self.sock = ssl.wrap(self.sock, ssl_params)
-    self.sock:dohandshake()
+    --self.sock = ssl.wrap(self.sock, ssl_params)
+    --self.sock:dohandshake()
   elseif protocol ~= "ws" then
     return nil, 'bad protocol'
   end
