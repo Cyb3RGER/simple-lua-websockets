@@ -1,5 +1,5 @@
 local bit = require'websocket.bit'
-local mime = require'mime'
+local base64 = require'websocket.base64'
 local rol = bit.rol
 local bxor = bit.bxor
 local bor = bit.bor
@@ -159,7 +159,7 @@ local sha1_wiki = function(msg)
 end
 
 local base64_encode = function(data)
-  return (mime.b64(data))
+  return (base64.encode(data))
 end
 
 local DEFAULT_PORTS = {ws = 80, wss = 443}
